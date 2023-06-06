@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://danielcsarria:TkNlaNd5cQ0dDR1h@enchanta-dev.ojisq2k.mongodb.net/enchanta_dev?retryWrites=true&w=majority",
+  "JWT_SECRET": "secretIsSecret"
+}
