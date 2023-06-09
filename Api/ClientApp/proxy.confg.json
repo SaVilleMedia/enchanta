@@ -2,6 +2,8 @@
   "/api/*": {
     "target": "https://localhost:3001",
     "secure": false,
-    "changeOrigin": true
+    "headers": {
+      "Connection": "Keep-Alive"
+    }
   }
 }
