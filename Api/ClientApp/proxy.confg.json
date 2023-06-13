@@ -1,9 +1,0 @@
-{
-  "/api/*": {
-    "target": "https://localhost:3001",
-    "secure": false,
-    "headers": {
-      "Connection": "Keep-Alive"
-    }
-  }
-}
