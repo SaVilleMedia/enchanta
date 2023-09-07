@@ -11,7 +11,7 @@ export const FormCreator = ({
   title,
   submitLabel,
   loading,
-  errs,
+  errs = [],
 }) => {
   const {
     register,

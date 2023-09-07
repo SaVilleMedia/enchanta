@@ -4,12 +4,15 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import { FormCreator } from "../shared/form-creator/FormCreator";
 import { REGISTER_FORM_FIELDS } from "./RegisterFormFields";
+import enchantaStore from "../../store";
 
 export default function Register() {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
   const [formErrors, setFormErrors] = useState([]);
+  const authenticate = enchantaStore((state) => state.authenticate);
+  const setSuccess = enchantaStore((state) => state.setSuccess);
 
   const handleRegisteration = async (data) => {
     setLoading(true);
@@ -18,6 +21,8 @@ export default function Register() {
       const response = await axios.post("/api/users", data);
 
       if (response) {
+        authenticate(response.data.token);
+        setSuccess("User registered successfully");
         navigate("/login");
       }
     } catch (err) {
