@@ -6,12 +6,13 @@
   "scripts": {
     "test": "node start",
     "start": "nodemon server",
-    "client": "npm start --prefix ClientApp",
+    "client": "npm start --prefix client",
     "dev": "concurrently \"npm run start\" \"npm run client\""
   },
   "author": "SaVille Media",
   "license": "MIT",
   "dependencies": {
+    "axios": "^1.4.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "config": "^3.3.9",
@@ -20,7 +21,9 @@
     "gravatar": "^1.8.2",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.1",
-    "request": "^2.88.2"
+    "react-hook-form": "^7.46.1",
+    "request": "^2.88.2",
+    "zustand": "^4.4.1"
   },
   "devDependencies": {
     "concurrently": "^8.0.1",
