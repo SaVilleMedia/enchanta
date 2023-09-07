@@ -6,8 +6,6 @@ export const FormErrors = ({ errors }) => {
   const msgs = useRef(null);
 
   useMountEffect(() => {
-    console.log("errors!", errors);
-
     errors?.forEach((error) => {
       msgs.current.show({
         severity: "error",
