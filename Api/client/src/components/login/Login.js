@@ -5,20 +5,22 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import { FormCreator } from "../shared/form-creator/FormCreator";
 import { LOGIN_FORM_FIELDS } from "./LoginFormFields";
+import enchantaStore from "../../store";
 
 export default function Login() {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
   const [formErrors, setFormErrors] = useState([]);
+  const authenticate = enchantaStore((state) => state.authenticate);
 
   const handleLogin = async (data) => {
     setLoading(true);
     setFormErrors([]);
     try {
       const response = await axios.post("/api/auth", data);
-
       if (response) {
+        authenticate(response.data.token);
         navigate("/dashboard");
       }
     } catch (err) {
