@@ -5,7 +5,8 @@ const PrivateRoutes = () => {
   const isAuthenticated = enchantaStore(
     (state) => state.authenticated.isAuthenticated
   );
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login/" />;
+
+  return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 export default PrivateRoutes;

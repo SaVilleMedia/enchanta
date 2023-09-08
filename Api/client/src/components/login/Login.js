@@ -12,23 +12,52 @@ export default function Login() {
 
   const [loading, setLoading] = useState(false);
   const [formErrors, setFormErrors] = useState([]);
-  const authenticate = enchantaStore((state) => state.authenticate);
+  const setToken = enchantaStore((state) => state.setToken);
+  const loginUser = enchantaStore((state) => state.loginUser);
+  const clearErrors = enchantaStore((state) => state.clearErrors);
+  const setUser = enchantaStore((state) => state.setUser);
+  const setError = enchantaStore((state) => state.setError);
 
   const handleLogin = async (data) => {
     setLoading(true);
     setFormErrors([]);
     try {
       const response = await axios.post("/api/auth", data);
-      if (response) {
-        authenticate(response.data.token);
-        navigate("/dashboard");
-      }
+      const token = response.data.token;
+      setToken(response.data.token);
+      loginUser(token)
+        .then((res) => {
+          login();
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setError("An error has occured");
+        });
     } catch (err) {
       const responseErrors = err.response.data.errors;
       setFormErrors(responseErrors);
       setLoading(false);
     }
   };
+
+  function login() {
+    clearErrors();
+    loginUser()
+      .then((res) => {
+        if (res) {
+          console.log(res.data);
+          if (res.status === 200 || res.status === 304) {
+            setUser(res.data);
+            navigate("/dashboard");
+          }
+        }
+      })
+      .catch((err) => {
+        console.log("error", err);
+        setError("An error has occured");
+      });
+  }
 
   const handleRegister = (e) => {
     e.preventDefault();
