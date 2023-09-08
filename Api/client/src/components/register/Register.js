@@ -11,7 +11,7 @@ export default function Register() {
 
   const [loading, setLoading] = useState(false);
   const [formErrors, setFormErrors] = useState([]);
-  const authenticate = enchantaStore((state) => state.authenticate);
+  const setToken = enchantaStore((state) => state.setToken);
   const setSuccess = enchantaStore((state) => state.setSuccess);
 
   const handleRegisteration = async (data) => {
@@ -21,7 +21,7 @@ export default function Register() {
       const response = await axios.post("/api/users", data);
 
       if (response) {
-        authenticate(response.data.token);
+        setToken(response.data.token);
         setSuccess("User registered successfully");
         navigate("/login");
       }
