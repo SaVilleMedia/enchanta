@@ -38,7 +38,7 @@ export default function Register() {
   };
 
   return (
-    <div className="h-screen flex justify-content-center align-items-center">
+    <div className="w-full h-screen absolute flex justify-content-center align-items-center top-0">
       <div
         className="login flex flex-column justify-content-center 
         align-items-center w-6 shadow-7 p-5"
