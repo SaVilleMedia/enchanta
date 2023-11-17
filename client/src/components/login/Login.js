@@ -46,7 +46,6 @@ export default function Login() {
     loginUser()
       .then((res) => {
         if (res) {
-          console.log(res.data);
           if (res.status === 200 || res.status === 304) {
             setUser(res.data);
             navigate("/dashboard");
@@ -65,7 +64,7 @@ export default function Login() {
   };
 
   return (
-    <div className="h-screen flex justify-content-center align-items-center">
+    <div className="w-full h-screen absolute flex flex justify-content-center align-items-center top-0">
       <div
         className="login flex flex-column justify-content-center 
         align-items-center w-6 shadow-7 p-5"

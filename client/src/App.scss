@@ -1,0 +1,37 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  position: relative;
+  top: 0;
+  padding: 87px 20px;
+  height: 100%;
+}
+
+.top-0 {
+  top: 0;
+  left: 0;
+}
+
+.p-menubar {
+  z-index: 1000;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}

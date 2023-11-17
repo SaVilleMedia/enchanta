@@ -1,0 +1,20 @@
+.trigger {
+  .front-side {
+    position: relative;
+  }
+
+  .flip-side {
+    position: relative;
+    display: none;
+  }
+
+  &:hover {
+    .front-side {
+      display: none;
+    }
+
+    .flip-side {
+      display: block;
+    }
+  }
+}

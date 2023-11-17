@@ -5,7 +5,10 @@ export default function Dashboard() {
 
   return (
     <div>
-      <h1>DASBHOARD SONNNN!</h1>
+      <div className="flex justify-content-between p-5">
+        <h1>DASBHOARD SONNNN!</h1>
+      </div>
+
       {user ? <h1>Hello! {user.username} </h1> : null}
     </div>
   );

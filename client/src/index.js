@@ -6,6 +6,7 @@ import App from "./App";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeflex/primeflex.scss";
+import "primeicons/primeicons.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -1,12 +1,20 @@
 import axios from "axios";
 import { create } from "zustand";
 import setAuthToken from "./utils/setAuthToken";
+import { Api } from "./api";
+
+const allowedSetTypes = ["commander", "expansion"];
 
 const enchantaStore = create((set) => ({
   authenticated: {
     token: localStorage.getItem("token") ?? "",
     isAuthenticated: localStorage.getItem("isAuthenticated") ?? false,
   },
+  user: JSON.parse(localStorage.getItem("user")) || {},
+  error: "",
+  success: "",
+  sets: [],
+  cards: [],
   setError: (message) => {
     set({
       success: null,
@@ -50,9 +58,16 @@ const enchantaStore = create((set) => ({
     set({ user: { ...setUser } });
     set({ authenticated: { isAuthenticated: true } });
   },
-  user: JSON.parse(localStorage.getItem("user")) || {},
-  error: "",
-  success: "",
+  logoutUser: () => {
+    set({
+      authenticated: {
+        token: "",
+        isAuthenticated: false,
+      },
+      user: {},
+    });
+    localStorage.clear();
+  },
 }));
 
 export default enchantaStore;
