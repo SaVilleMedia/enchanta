@@ -34,5 +34,6 @@ export const addToCollection = async (card, selectedFinish, amount) => {
     console.log(response);
   } catch (err) {
     console.log(err);
+    return err;
   }
 };
