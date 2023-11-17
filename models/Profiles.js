@@ -10,6 +10,11 @@ const ProfileSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  collection: {
+    cards: {
+      type: Array,
+    },
+  },
   decks: {
     name: {
       type: String,
