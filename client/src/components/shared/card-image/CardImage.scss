@@ -1,0 +1,23 @@
+.trigger {
+  position: relative;
+  .front-side {
+    position: relative;
+  }
+
+  .flip-side {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+  }
+
+  &:hover {
+    .front-side {
+      opacity: 0;
+    }
+
+    .flip-side {
+      opacity: 1;
+    }
+  }
+}

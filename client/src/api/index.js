@@ -3,8 +3,7 @@ import axios from "axios";
 const baseUrl = "https://api.scryfall.com/";
 
 export const ApiUrls = {
-  sets: "sets",
-  cards: "cards/search?q=%28game%3Apaper+or+game%3Aarena+or+game%3Amtgo%29",
+  collection: "/api/user/card-collection",
 };
 
 export const axiosScryfall = axios.create({
