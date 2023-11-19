@@ -11,23 +11,22 @@ router.post("/", auth, async (req, res) => {
   try {
     const card = req.body;
     const userId = req.user.id;
+    const cardId = card.card.id;
+
+    const update = await CardCollection.findOneAndUpdate(
+      { userId, "cardCollection.card.id": cardId },
+      { $inc: { "cardCollection.$.amount": 1 } },
+      { new: true }
+    );
+
+    if (update) {
+      return res.json(update.cardCollection);
+    }
+
     const user = await CardCollection.findOne({ userId });
 
-    card["id"] = card.card.id;
-
     if (user) {
-      const existingCardIndex = user.cardCollection.findIndex(
-        (c) => c.id === card.id
-      );
-
-      if (existingCardIndex !== -1) {
-        console.log("updating existing card");
-        user.cardCollection[existingCardIndex].amount += 1;
-      } else {
-        console.log("adding new card");
-        user.cardCollection = [...user.cardCollection, card];
-      }
-
+      user.cardCollection.push(card);
       await user.save();
       return res.json(user.cardCollection);
     }
@@ -38,7 +37,7 @@ router.post("/", auth, async (req, res) => {
     });
 
     await newCardCollection.save();
-    return res.json(newCardCollection);
+    return res.json(newCardCollection.cardCollection);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
