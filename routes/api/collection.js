@@ -23,14 +23,13 @@ router.post("/", auth, async (req, res) => {
       if (existingCardIndex !== -1) {
         console.log("updating existing card");
         user.cardCollection[existingCardIndex].amount += 1;
-        await user.save();
-        return res.json(user.cardCollection);
       } else {
         console.log("adding new card");
         user.cardCollection = [...user.cardCollection, card];
-        await user.save();
-        return res.json(user.cardCollection);
       }
+
+      await user.save();
+      return res.json(user.cardCollection);
     }
 
     const newCardCollection = new CardCollection({
