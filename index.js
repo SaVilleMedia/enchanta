@@ -1,7 +1,10 @@
 const express = require("express");
 const connectDB = require("./config/db");
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8080;
+var cors = require("cors");
+
+app.use(cors());
 
 // Connect Database
 connectDB();
@@ -12,7 +15,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/users", require("./routes/api/users"));
-app.use("/api/user", require("./routes/api/user"));
+app.use("/api/user/card-collection", require("./routes/api/collection"));
 app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/profile", require("./routes/api/profile"));
 
